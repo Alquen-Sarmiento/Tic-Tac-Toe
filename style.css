@@ -1,7 +1,6 @@
 *{
   margin: 0;
   padding: 0;
-  font-family: 'Rock Salt', cursive;
 }
 
 .box{
@@ -19,6 +18,7 @@
   align-items: center;
   background-color: grey;
   margin: 20px auto 0 auto;
+  font-family: 'Rock Salt', cursive;
 }
 
 .column{
@@ -31,10 +31,23 @@
 }
 
 #sup{
-  margin: 20px auto 0 auto;
+  margin: 50px auto 0 auto;
+  left: 0;
+  right: 0;
   text-align: center;
+  background-color: rgba(255, 100, 0, 0.7);
+  position: absolute;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30pt;
+  display: none;
+  color: white;
 }
 
 #restart{
   text-align: center;
+  font-size: 15pt;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: darkgreen;
 }
