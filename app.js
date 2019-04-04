@@ -29,6 +29,9 @@ window.onload = function() {
     Array.prototype.forEach.call(boxClass, function(e){ e.style.fontSize = (winHeight * 0.11) + "px"});
     document.getElementById("sup").style.width = (winHeight * 0.3) + "px";
     document.getElementById("sup").style.height = (winHeight * 0.2) + "px";
+    document.getElementById("sup").style.fontSize = (winHeight * 0.05) + "pt";
+    document.getElementById("restart").style.width = (winHeight * 0.15) + "px";
+    document.getElementById("restart").style.height = (winHeight * 0.08) + "px";
   }
   else{
     //Beware of the spelling of width
@@ -37,6 +40,9 @@ window.onload = function() {
     Array.prototype.forEach.call(boxClass, function(e){ e.style.fontSize = (winWidth * 0.11) + "px"});
     document.getElementById("sup").style.width = (winWidth * 0.3) + "px";
     document.getElementById("sup").style.height = (winWidth * 0.2) + "px";
+    document.getElementById("sup").style.fontSize = (winWidth * 0.05) + "pt";
+    document.getElementById("restart").style.width = (winWidth * 0.15) + "px";
+    document.getElementById("restart").style.height = (winWidth * 0.08) + "px";
   }
 
   //Add click listener to the restart button
@@ -67,12 +73,16 @@ window.onload = function() {
     }
   }
 
-function firstMove(){
+  function randomMove(length){
+    return Math.floor(Math.random() * length)
+  }
+
+  function firstMove(){
   //If gameCounter is odd, the enemy attack first
   if(gameCounter % 2 == 1){
     firstMover = enemy;
-    //The first move is random to long recursion (at minimax)
-    turn(Math.floor(Math.random() * globalBoard.length), enemy);
+    //The first move is random to avoid long recursion (at minimax)
+    turn(randomMove(globalBoard.length), enemy);
   }
   else{
     firstMover = human;
@@ -110,29 +120,32 @@ function firstMove(){
     return false;
   }
 
-  function gameOver({toBeDisplay, player, message}){
+  function gameOver(state){
     //Get the winner's combination and the winner as arguments then display
     let color;
     //Human wins
-    if(player == human){
+    if(state.player == human){
       color = "red";
+      document.getElementById("win").value++;
     }
     //Enemy wins
-    else if(player == enemy){
+    else if(state.player == enemy){
       color = "blue";
+      document.getElementById("loss").value++;
     }
     //Tie
     else{
       color = "green";
+      document.getElementById("tie").value++;
     }
-    Array.prototype.forEach.call(toBeDisplay, function(e){ document.getElementById(e).style.backgroundColor = color })
+    Array.prototype.forEach.call(state.toBeDisplay, function(e){ document.getElementById(e).style.backgroundColor = color })
     //Remove the listener to make unclickable
     Array.prototype.forEach.call(boxClass, function(e){
       e.removeEventListener("click", playerTurn);
     });
     //Declare winners
     document.getElementById("sup").style.display = "block";
-    document.getElementById("disp").innerText = message;
+    document.getElementById("disp").innerText = state.message;
   }
 
   function emptyCells(){

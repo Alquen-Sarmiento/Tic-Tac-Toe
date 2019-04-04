@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body{
+  background-color: papayawhip;
+}
+
 .box{
   width: 33.33%;
   height: 100%;
@@ -39,15 +43,25 @@
   position: absolute;
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 30pt;
   display: none;
   color: white;
 }
 
 #restart{
   text-align: center;
-  font-size: 15pt;
   margin-bottom: 30px;
   padding: 10px;
-  background-color: darkgreen;
+  background-color: burlywood;
+}
+
+#score{
+  text-align: center;
+}
+
+input{
+  margin: 10px;
+  width: 50px;
+  height: 20px;
+  text-align: center;
+  font-size: 12pt;
 }
